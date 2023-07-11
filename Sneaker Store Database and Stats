@@ -61,9 +61,6 @@ INSERT INTO SHOES VALUES (58, "Jordan 4", "Midnight Navy", 9, 305);
 INSERT INTO SHOES VALUES (59,"Jordan 4", "Red Thunder", 10, 410);
 INSERT INTO SHOES VALUES (60, "Yeezy Foam Runner", "Clay Taupe", 11, 165); 
 
-SELECT *
-FROM SHOES;
-
 CREATE TABLE SHOEDETAILS (Product_ID INTEGER PRIMARY KEY, ReleaseDate INTEGER, Brand TEXT, SKU INTEGER, Designer TEXT);
 
 INSERT INTO SHOEDETAILS VALUES (1, '04-28-2021', "Jordan", 8527400, "Tinker Hatfield");
