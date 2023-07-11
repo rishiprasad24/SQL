@@ -1,3 +1,7 @@
+#This project is about how much the most popular sneakers currently cost on the resell market including brands such as Nike, Jordan, and Adidas.
+
+#This project untilized data from the GOAT app and was written in SQL Server. 
+
 CREATE TABLE SHOES (Product_ID INTEGER PRIMARY KEY, Name TEXT, Colorway TEXT, Size INTEGER, Price INTEGER);  
 
 INSERT INTO SHOES VALUES(1, "Jordan 4", "University Blue", 10, 500); 
