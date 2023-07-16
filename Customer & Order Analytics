@@ -54,11 +54,11 @@ AND length(orderid) = 6
 AND orderid <> 'Order ID'
 
 #8. Which locations in New York recieved at least 3 orders in Janauary and how many orders did they each recieve? 
-SELECT distinct (location), COUNT (OrderId) 
+SELECT distinct (location), COUNT (OrderID) 
 FROM BIT_DB.JanSales 
 WHERE locatation LIKE '%NY%' 
 AND length (orderid)=6 
-AND orderid <> 'Order Id' 
+AND orderid <> 'Order ID' 
 GROUP BY location 
 HAVING Count (OrderID) > 2 
 
@@ -67,3 +67,11 @@ SELECT sum (quantity) AS quantity, product
 FROM BIT_DB.FebSales 
 WHERE product like '%Headphones%' 
 GROUP BY product 
+
+#10. What was the average amount spent per account in Febuary? 
+SELECT AVG (quantity*price) 
+FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB. customers cust 
+ON Feb.orderid=cust.order_id
+WHERE length (orderid) =6 
+AND orderid <> 'OrderID' 
