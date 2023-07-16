@@ -127,3 +127,22 @@ INSERT INTO SHOEDETAILS VALUES (57, '08-02-2021', "Adidas", 0328400, "Kanye West
 INSERT INTO SHOEDETAILS VALUES (58, '10-29-2022', "Jordan", 6927100, "Tinker Hatfield");
 INSERT INTO SHOEDETAILS VALUES (59, '01-15-2022', "Jordan", 8527016, "Tinker Hatfield");
 INSERT INTO SHOEDETAILS VALUES (60, '06-01-2023', "Adidas", 6842, "Kanye West"); 
+
+#1. How many sneakers in the database are the brand 'Jordan'? 
+SELECT COUNT (Brand)
+FROM ShoeDetails
+WHERE brand= 'Jordan' 
+
+#2. Find the name and Sku of the sneaker that has a release date of October 11, 2019. 
+SELECT Name, Colorway, Sku
+FROM Shoes
+INNER JOIN ShoeDetails
+ON shoes.product_id=ShoeDetails.product_id
+WHERE ReleaseDate= '10-11-2019' 
+
+#3. What is the average price of sneakers that are between sizes 9 and 12? 
+SELECT AVG (Price), Name
+FROM Shoes
+WHERE Size Between 9 AND 12
+GROUP BY Name
+ORDER BY AVG (Price) ASC
