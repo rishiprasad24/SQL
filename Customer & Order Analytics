@@ -16,7 +16,6 @@ AND orderid <> 'Order ID'
 #3. Select the customer account numbers for all the orders that were placed in February. 
 SELECT distinct acctnum
 FROM BIT_DB.customers cust
-
 INNER JOIN BIT_DB.FebSales Feb
 ON cust.order_id=FEB.orderid
 WHERE length(orderid) = 6 
@@ -37,8 +36,7 @@ FROM BIT_DB.JanSales
 GROUP BY product
 
 #6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
-select 
-sum(Quantity), 
+SELECT sum(Quantity), 
 product, 
 sum(quantity)*price as revenue
 FROM BIT_DB.FebSales 
@@ -46,12 +44,26 @@ WHERE location = '548 Lincoln St, Seattle, WA 98101'
 GROUP BY product
 
 #7. How many customers ordered more than 2 products at a time, and what was the average amount spent for those customers? 
-select 
-count(distinct cust.acctnum), 
-avg(quantity*price)
+SELECT COUNT (distinct cust.acctnum), 
+AVG (quantity*price)
 FROM BIT_DB.FebSales Feb
 LEFT JOIN BIT_DB.customers cust
 ON FEB.orderid=cust.order_id
 WHERE Feb.Quantity>2
 AND length(orderid) = 6 
 AND orderid <> 'Order ID'
+
+#8. Which locations in New York recieved at least 3 orders in Janauary and how many orders did they each recieve? 
+SELECT distinct (location), COUNT (OrderId) 
+FROM BIT_DB.JanSales 
+WHERE locatation LIKE '%NY%' 
+AND length (orderid)=6 
+AND orderid <> 'Order Id' 
+GROUP BY location 
+HAVING Count (OrderID) > 2 
+
+#9. How many of each type of headphones was sold in Febauray? 
+SELECT sum (quantity) AS quantity, product 
+FROM BIT_DB.FebSales 
+WHERE product like '%Headphones%' 
+GROUP BY product 
