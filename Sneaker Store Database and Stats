@@ -128,21 +128,67 @@ INSERT INTO SHOEDETAILS VALUES (58, '10-29-2022', "Jordan", 6927100, "Tinker Hat
 INSERT INTO SHOEDETAILS VALUES (59, '01-15-2022', "Jordan", 8527016, "Tinker Hatfield");
 INSERT INTO SHOEDETAILS VALUES (60, '06-01-2023', "Adidas", 6842, "Kanye West"); 
 
-#1. How many sneakers in the database are the brand 'Jordan'? 
+#1. How many sneakers in the database are the brand "Adidas"? 
 SELECT COUNT (Brand)
 FROM ShoeDetails
-WHERE brand= 'Jordan' 
+WHERE brand= "Adidas" 
 
-#2. Find the name and Sku of the sneaker that has a release date of October 11, 2019. 
+#2. Find the name of the most expensive sneaker in the database?
+SELECT Name, Colorway, Max (Price)
+FROM SHOES
+
+#3. Find the name and Sku of the sneaker that has a release date of October 11, 2019. 
 SELECT Name, Colorway, Sku
 FROM Shoes
 INNER JOIN ShoeDetails
 ON shoes.product_id=ShoeDetails.product_id
 WHERE ReleaseDate= '10-11-2019' 
 
-#3. What is the average price of sneakers that are between sizes 9 and 12? 
+#4. What is the average price of sneakers that are between sizes 9 and 12? 
 SELECT AVG (Price), Name
 FROM Shoes
 WHERE Size Between 9 AND 12
 GROUP BY Name
 ORDER BY AVG (Price) ASC
+
+#5. What is the name and the release date for the sneaker that has the colorway "Midnight Navy"? 
+SELECT Name, Colorway, Size, ReleaseDate
+FROM Shoes
+LEFT JOIN ShoeDetails
+ON Shoes.Product_Id=ShoeDetails.Product_Id
+WHERE colorway="Midnight Navy"
+GROUP BY Size
+
+#6. Find the sneakers that contain a price between $400 and $700 and are only Jordan brand? 
+SELECT Name, Price, Colorway, Brand
+FROM Shoes 
+JOIN ShoeDetails
+ON Shoes.Product_ID=ShoeDetails.Product_Id
+WHERE Brand="Jordan"
+GROUP BY Name 
+HAVING Price BETWEEN 400 AND 700
+ORDER BY Price
+
+#7. How many shoes in the database include the letter 'J' in the name?
+SELECT COUNT (Name)
+FROM SHOES
+WHERE NAME LIKE 'J%
+
+#8. What is the total price of sneakers that include the name 'Air'?
+SELECT SUM (PRICE)
+FROM SHOES 
+WHERE NAME LIKE 'Air%'
+
+#9. What is the price for each shoe in the database and what is the average price for all 60 shoes? 
+SELECT Product_Id, Name, Colorway, Price, 
+(SELECT AVG (Price) FROM Shoes)
+FROM SHOES
+
+#10. What are the release dates and Sku's of all the Jordan shoes that have a price higher than $500 and are desgined by Tinker Hatfield?
+SELECT product_id, ReleaseDate, Brand, SKU, Designer
+FROM ShoeDetails
+WHERE PRODUCT_ID IN (SELECT product_id
+FROM SHOES
+WHERE PRICE >500 AND Designer="Tinker Hatfield")
+ORDER BY Product_ID
+
