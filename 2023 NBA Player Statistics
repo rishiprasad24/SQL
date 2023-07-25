@@ -7,3 +7,41 @@ SELECT SUM(PTS)
 FROM dbo.nba_player_stats
 WHERE TEAM='NYK'
 
+#2. Who led the leauge in turnovers that plays the position Point Guard or Shooting Guard?
+SELECT Player, TOV
+FROM dbo.nba_player_stats
+WHERE POS='PG' OR POS='SG'
+ORDER BY TOV DESC
+
+#3. How many points, rebounds, and assists did Jayson Tatum have in the 2023 season? 
+SELECT PTS, REB, AST
+FROM dbo.nba_player_stats
+WHERE Player='Jayson Tatum' 
+
+#4. Find all the point guards that have scored over 1000 points and what teams do they play for? 
+SELECT Player, Team, PTS
+FROM dbo.nba_player_stats
+WHERE POS='PG'AND PTS > 1000
+
+#5. Which NBA player led the leauge in minutes played?
+SELECT Player, MIN 
+FROM dbo.nba_player_stats
+ORDER BY MIN DESC
+
+#6. Which player had the least amount of assits in the leauge that has played over 50 games and what team does that player play for? 
+SELECT Player, AST, Team
+FROM dbo.nba_player_stats
+WHERE GP > 50
+ORDER BY AST 
+
+#7. Who is the youngest player in the NBA currently? What position does he play and how many points, rebounds, and steals did he have?
+SELECT Player, Age, Pos, PTS, REB, STL
+FROM dbo.nba_player_stats
+ORDER BY Age ASC
+
+#8. Find the number of players per position? 
+SELECT POS, COUNT (POS) as PlayersperPosition 
+FROM dbo.nba_player_stats
+GROUP BY POS 
+HAVING COUNT (POS) >1 
+ORDER BY COUNT (POS) 
