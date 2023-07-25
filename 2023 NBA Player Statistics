@@ -1,3 +1,9 @@
-#This project consists of NBA players total performance statistics from the 2022-2023 season.  
+#This project consists of NBA players total performance statistics from the 2022-2023 season and the code was written in SQL Server.   
 
 #This dataset was based off of the total statistics of each player from the whole season and not the average statistics per game. 
+
+#1. How many points did the New York Knicks score in the 2023 season? 
+SELECT SUM(PTS)
+FROM dbo.nba_player_stats
+WHERE TEAM='NYK'
+
