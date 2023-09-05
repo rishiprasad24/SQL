@@ -25,7 +25,6 @@ ORDER BY 1, 2
 
 Select location, population, MAX(total_cases) as HighestInfectionCount, MAX ((total_cases/population))*100 as PercentPopulationInfected
 FROM PortfolioProject..CovidDeaths
---WHERE location LIKE '%states%'
 GROUP BY location, population
 ORDER BY PercentPopulationInfected DESC
 
@@ -33,7 +32,6 @@ ORDER BY PercentPopulationInfected DESC
 
 SELECT Location, MAX (cast (Total_deaths as int)) as TotalDeathCount 
 FROM PortfolioProject..CovidDeaths
---WHERE location LIKE '%states%'
 WHERE continent is not null 
 GROUP BY LOCATION
 ORDER BY TotalDeathCount DESC 
@@ -42,7 +40,6 @@ ORDER BY TotalDeathCount DESC
 
 SELECT continent, MAX (cast (Total_deaths as int)) as TotalDeathCount 
 FROM PortfolioProject..CovidDeaths
---WHERE location LIKE '%states%'
 WHERE continent is Not Null 
 GROUP BY continent
 ORDER BY TotalDeathCount DESC 
@@ -51,7 +48,6 @@ ORDER BY TotalDeathCount DESC
 
 SELECT continent, MAX (cast (Total_deaths as int)) as TotalDeathCount 
 FROM PortfolioProject..CovidDeaths
---WHERE location LIKE '%states%'
 WHERE continent is Not Null 
 GROUP BY continent
 ORDER BY TotalDeathCount DESC 
@@ -61,7 +57,6 @@ ORDER BY TotalDeathCount DESC
 SELECT SUM (new_cases) as total_cases, SUM (cast(new_deaths as int)) as total_deaths, SUM(cast 
 (new_deaths as int))/SUM(New_Cases)*100 as DeathPercentage 
 FROM PortfolioProject..CovidDeaths
---WHERE location like '%states%' 
 WHERE continent is NOT NULL 
 --GROUP BY date 
 ORDER BY 1,2 
