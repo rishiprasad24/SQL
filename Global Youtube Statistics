@@ -1,1 +1,82 @@
+#In this project, I used SQL Server to analyze Youtube data from around the world. 
+
+#1. How many subscribers does Mr. Beast have?
+SELECT Youtuber, subscribers  
+FROM dbo.Global_Youtube_Demographics
+WHERE Youtuber='MrBeast'
+
+#2. Find all the Youtubers who are from the United States and over 10,000,000 subscribers.
+SELECT DISTINCT Youtuber, Country, subscribers
+FROM dbo.Global_Youtube_Demographics
+WHERE subscribers > 10000000 AND Country='United States'
+
+#3. Find all the Youtubers who have the most subscribers under the category 'Sports' in descending order.
+SELECT Youtuber, MAX(subscribers) AS Number_Of_Subscribers 
+FROM dbo.Global_Youtube_Demographics
+WHERE Category='Sports'
+GROUP BY Youtuber, subscribers 
+ORDER BY Number_Of_Subscribers DESC
+
+#4. Which entertainment channel has the most subscribers in descending order?
+SELECT DISTINCT Youtuber, subscribers, channel_type 
+FROM dbo.Global_Youtube_Demographics
+WHERE channel_type= 'Entertainment' 
+ORDER BY Youtuber DESC
+
+
+#5. Find all the Youtubers that have the highest yearly earnings that are from the music category.
+SELECT Youtuber, Category, highest_yearly_earnings
+FROM dbo.Global_Youtube_Demographics 
+LEFT JOIN dbo.Global_Youtube_Statistics
+ON dbo.Global_Youtube_Demographics.rank=dbo.Global_Youtube_Statistics.rank 
+WHERE Category='Music'
+
+#6. How many Youtube Channels were created in 2005?
+SELECT DISTINCT Youtuber, created_year
+FROM dbo.Global_Youtube_Demographics
+LEFT JOIN dbo.Global_Youtube_Statistics
+ON dbo.Global_Youtube_Demographics.rank=dbo.Global_Youtube_Statistics.rank
+WHERE created_year='2005'
+ORDER BY Youtuber ASC
+
+#7. Find all the Youtubers who’s content is educational with the highest monthly and yearly earnings that earned over 10,000,000 subscribers. 
+SELECT Youtuber, channel_type, highest_monthly_earnings, highest_yearly_earnings, MAX (subscribers) AS NumofSubscribers
+FROM dbo.Global_Youtube_Demographics
+JOIN dbo.Global_Youtube_Statistics
+ON dbo.Global_Youtube_Demographics.rank=dbo.Global_Youtube_Statistics.rank 
+WHERE channel_type= 'Education' 
+GROUP BY Youtuber, channel_type, highest_monthly_earnings, highest_yearly_earnings
+HAVING MAX (subscribers) > 10000000
+ORDER BY NumofSubscribers ASC
+
+#8. Write a query showing the relationship between the Youtubers and how many uploads they have by removing any duplicate values. 
+WITH CTE_Global AS 
+(SELECT DISTINCT Youtuber, subscribers, category, uploads
+, COUNT (category) OVER (PARTITION BY category) asCategoryCount
+, AVG (uploads) OVER (PARTITION BY category) as AvgUploads
+FROM dbo.Global_Youtube_Demographics AS dem
+JOIN dbo.Global_Youtube_Statistics AS stat
+ON dem.rank=stat.rank
+WHERE uploads > 1000
+)
+SELECT Youtuber, uploads 
+FROM CTE_Global
+
+#9. Which Youtuber has the most subscribers that has greater than 10,000 uploads? 
+SELECT DISTINCT  Youtuber, subscribers, uploads 
+FROM dbo.Global_Youtube_Demographics
+WHERE Youtuber in (SELECT Youtuber
+FROM dbo.Global_Youtube_Demographics
+WHERE uploads >10000) 
+ORDER BY uploads DESC
+
+#10. Write a query to describe the Youtubers who have over 10 million subscribers as successful and less than one million subscribers as not successful. 
+SELECT Youtuber, subscribers,    
+CASE  
+WHEN subscribers >10000000 THEN 'successful' 
+WHEN subscribers BETWEEN 1000000 AND 999999999 THEN 'moderately successful' 
+ELSE 'not successful' 
+END AS YoutubeSuccess
+FROM dbo.Global_Youtube_Demographics
+
 
