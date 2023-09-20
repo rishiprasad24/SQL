@@ -1,6 +1,6 @@
 #This project is about how much the most popular sneakers released over the years currently cost on the resell market including brands such as Nike, Jordan, and Adidas.
 
-#This project untilized data from the GOAT sneaker app. 
+#This project untilized data from the GOAT sneaker app and the SQL code was written in Khan Academy. 
 
 
 CREATE TABLE SHOES (Product_ID INTEGER PRIMARY KEY, Name TEXT, Colorway TEXT, Size INTEGER, Price INTEGER);  
