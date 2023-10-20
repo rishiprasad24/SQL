@@ -1,4 +1,5 @@
 #In this project, I used SQL Server to analyze Youtube data from around the world. 
+#This dataset was downloaded from Kaggle. 
 
 #1. How many subscribers does Mr. Beast have?
 SELECT Youtuber, subscribers  
