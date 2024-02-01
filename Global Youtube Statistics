@@ -1,6 +1,5 @@
-#In this project, I used SQL Server to analyze Youtube data from around the world. 
-#This dataset was downloaded from Kaggle. 
-
+#In this project, I used SQL Server to analyze Youtube data from around the world with a dataset downloaded from Kaggle. 
+ 
 #1. How many subscribers does Mr. Beast have?
 SELECT Youtuber, subscribers  
 FROM dbo.Global_Youtube_Demographics
