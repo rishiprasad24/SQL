@@ -61,7 +61,7 @@ FROM dbo.Adidas_Sales
 GROUP BY Sales_Method  
 ORDER BY Num_Of_Orders DESC 
 
---9. What are total units sold for each retailer? 
+--9. What are the total units sold for each retailer? 
 SELECT Retailer, SUM(Units_Sold) as Total_Units_Sold 
 FROM dbo.Adidas_Info i
 JOIN dbo.Adidas_Sales s
