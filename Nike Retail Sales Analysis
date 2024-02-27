@@ -1,4 +1,4 @@
-#In this SQL project I analyze Nike sales and profits from multiple retailers in the U.S. over the last few years. This dataset was obtained through Kaggle and used SQL Server to query the data.  
+#In this SQL project I analyze Nike sales and profits from multiple retailers in the U.S. over the last few years. This dataset was obtained through Kaggle and I used SQL Server to query the data.  
 
 SELECT *
 FROM dbo.Nike_Info
