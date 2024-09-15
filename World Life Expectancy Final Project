@@ -1,5 +1,5 @@
 
-# World Life Expectancy Final Project (Exploratory Data Analysis) 
+# Now that the data is cleaned, I used this part of the project for exploratory data analysis in MY SQL determining the world life expectancy among various countries around the world. 
 
 SELECT *
 FROM world_life_expectancy;
