@@ -1,5 +1,5 @@
 
-# In this part of the project, I am performing data cleaning in MY SQL to ensure that the data is accurate. I used numerous functions to remove any duplicates, check for any null values, and updated all tables after completion. 
+# In this part of the project, I am performing data cleaning in MYSQL to ensure that the data is clean and accurate. I used numerous functions to remove any duplicates, check for any null values, and updated all tables after completion. 
 
 SELECT * 
 FROM world_life_expectancy;
