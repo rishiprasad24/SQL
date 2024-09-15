@@ -1,5 +1,5 @@
-#In this SQL project I analyze Nike sales and profits from multiple retailers in the U.S. during the COVID pandemic. This dataset was obtained through Kaggle and I used SQL Server to query the data.  
-# The next part of this project will be visualized in Tableau.
+#In this SQL project, I analyze Nike sales and profits from multiple retailers in the U.S. during the COVID pandemic. This dataset was obtained through Kaggle and I used SQL Server to query the data.  
+# The next part of this project will be visualized using Tableau.
 
 SELECT *
 FROM dbo.Nike_Info
