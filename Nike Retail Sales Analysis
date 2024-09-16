@@ -12,7 +12,7 @@ SELECT COUNT (City) as Num_of_Orders
 FROM dbo.Nike_Info
 WHERE Retailer = 'Foot Locker' AND City = 'New York'
 
--- 2.Find which retailer generated the most sales from highest to lowest? 
+-- 2.Find which retailer generated the most sales from highest to lowest?  
 SELECT Retailer, MAX (Total_Sales) as Most_Sales
 FROM dbo.Nike_Info as i
 JOIN dbo.Nike_Sales as s
